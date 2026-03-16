@@ -66,11 +66,12 @@
     "explorer.fileNesting.patterns": {
         "*.sln": "*.csproj"
     },
-    "dotnet.defaultSolution": "shader-template.slnx",
+    "dotnet.defaultSolution": "billiards-ball.slnx",
     "cSpell.words": [
         "bitangent",
         "CBUFFER",
         "ENDHLSL",
+        "fmod",
         "hlsl",
         "HLSLPROGRAM",
         "Holmer",
