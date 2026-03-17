@@ -876,21 +876,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1952268375}
     m_Modifications:
+    - target: {fileID: 834540007093705336, guid: 33ca57b2cb169a7efb433b3dd71402ba, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 8133117f0234054e3b5b63264faa2f55, type: 2}
     - target: {fileID: 2429160038554480468, guid: 33ca57b2cb169a7efb433b3dd71402ba, type: 3}
       propertyPath: _number
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2429160038554480468, guid: 33ca57b2cb169a7efb433b3dd71402ba, type: 3}
       propertyPath: _stripeColor.b
-      value: 0.8
+      value: 0.2863564
       objectReference: {fileID: 0}
     - target: {fileID: 2429160038554480468, guid: 33ca57b2cb169a7efb433b3dd71402ba, type: 3}
       propertyPath: _stripeColor.g
-      value: 0.9019608
+      value: 0.7397687
       objectReference: {fileID: 0}
     - target: {fileID: 2429160038554480468, guid: 33ca57b2cb169a7efb433b3dd71402ba, type: 3}
       propertyPath: _stripeColor.r
-      value: 0.9019608
+      value: 0.9339623
       objectReference: {fileID: 0}
     - target: {fileID: 3010804986596040095, guid: 33ca57b2cb169a7efb433b3dd71402ba, type: 3}
       propertyPath: m_Name

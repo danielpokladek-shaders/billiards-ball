@@ -2,24 +2,24 @@ Shader "DP/BallShaderUnlit"
 {
     Properties
     {
-        [Header(Base Settings)]
-        _BaseColor("Base Color", Color) = (0.9, 0.9, 0.8, 1)
+        [Header(Color Settings)]
+        _Base_Color("Base Color", Color) = (0.9, 0.9, 0.8, 1)
+        _Accent_Color("Accent Color", Color) = (1, 1, 1, 1)
+        _Numbers_Color("Number Color", Color) = (0, 0, 0, 1)
         
         [Header(Line Settings)]
-        [IntRange] _HasLine("Has Line", Range(0, 1)) = 1
-        _LineThickness("Line Thickness", Range(0, 0.5)) = 0.174
-        _LineColor("Line Color", Color) = (1, 1, 1, 1)
+        [IntRange] _Has_Line("Has Line", Range(0, 1)) = 1
+        _Line_Thickness("Line Thickness", Range(0, 0.5)) = 0.174
 
         [Header(Number Circle Settings)]
         _Radius("Circle Radius", float) = 0.16
         
         [Header(Number Settings)]
-        _NumberAtlas("Atlas Texture", 2D) = "white" {}
-        _NumberAtlasSize("Atlas Size", Integer) = 4
+        _Number_Atlas("Atlas Texture", 2D) = "white" {}
+        _Number_Atlas_Size("Atlas Size", Integer) = 4
         [IntRange] _Number("Number", Range(0, 15)) = 3
-        _NumbersColor("Number Color", Color) = (0, 0, 0, 1)
-        _EdgeMin("Edge Min Threshold", Range(0, 1)) = 0.9
-        _EdgeMax("Edge Max Threshold", Range(0, 1)) = 0.75
+        _Edge_Min("Edge Min Threshold", Range(0, 1)) = 0.9
+        _Edge_Max("Edge Max Threshold", Range(0, 1)) = 0.75
     }
 
     SubShader
@@ -47,46 +47,46 @@ Shader "DP/BallShaderUnlit"
                 float2 uv : TEXCOORD0;
             };
 
-            TEXTURE2D(_NumberAtlas);
-            SAMPLER(sampler_NumberAtlas);
-            float4 _NumberAtlas_ST;
+            TEXTURE2D(_Number_Atlas);
+            SAMPLER(sampler_Number_Atlas);
+            float4 _Number_Atlas_ST;
 
-            half4 _BaseColor;
+            half4 _Base_Color;
 
-            int _HasLine;
-            half _LineThickness;
-            half4 _LineColor;
+            int _Has_Line;
+            half _Line_Thickness;
+            half4 _Accent_Color;
 
             half _Radius;
 
-            int _NumberAtlasSize;
-            half4 _NumbersColor;
+            int _Number_Atlas_Size;
+            half4 _Numbers_Color;
             half _Number;
 
-            half _EdgeMin;
-            half _EdgeMax;
+            half _Edge_Min;
+            half _Edge_Max;
 
             Varyings vert(Attributes IN)
             {
                 Varyings OUT;
                 OUT.positionHCS = TransformObjectToHClip(IN.positionOS.xyz);
-                OUT.uv = TRANSFORM_TEX(IN.uv, _NumberAtlas);
+                OUT.uv = TRANSFORM_TEX(IN.uv, _Number_Atlas);
                 return OUT;
             }
 
             half4 frag(Varyings IN) : SV_Target
             {
                 // Precalculated shared properties
-                half gridInv = (float)1 / _NumberAtlasSize;
-                int uvYOffset = _NumberAtlasSize - 1;
+                half gridInv = (float)1 / _Number_Atlas_Size;
+                int uvYOffset = _Number_Atlas_Size - 1;
                 half2 center = float2(0.5, 0.5);
 
-                half4 color = lerp(_LineColor, _BaseColor, _HasLine);
+                half4 color = lerp(_Accent_Color, _Base_Color, _Has_Line);
                 
                 // Horizontal line across ball (stripe)
                 float distanceFromCenter = abs(IN.uv.y - center.x);
-                float lineMask = step(distanceFromCenter, _LineThickness);
-                color.rgb = lerp(color.rgb, _LineColor.rgb, lineMask);
+                float lineMask = step(distanceFromCenter, _Line_Thickness);
+                color.rgb = lerp(color.rgb, _Accent_Color.rgb, lineMask);
                 
                 // Circle background behind number
                 float2 circleUVs = IN.uv;
@@ -94,25 +94,25 @@ Shader "DP/BallShaderUnlit"
                 
                 float dist = distance(circleUVs, center);
                 float circleMask = step(dist, _Radius) * saturate(_Number);
-                color.rgb = lerp(color.rgb, _BaseColor.rgb, circleMask);
+                color.rgb = lerp(color.rgb, _Base_Color.rgb, circleMask);
                 
                 // Calculating UVs for the given number in atlas
                 float2 numberUV = (frac(IN.uv) - center) * uvYOffset + center;
-                float x = fmod(_Number, _NumberAtlasSize);
+                float x = fmod(_Number, _Number_Atlas_Size);
                 float y = uvYOffset - floor(_Number * gridInv);
                 float2 atlasUV = (numberUV + float2(x, y)) * gridInv;
                 
                 // Sampling the number from atlas
-                float numberSampler = SAMPLE_TEXTURE2D(_NumberAtlas, sampler_NumberAtlas, atlasUV).r;
+                float numberSampler = SAMPLE_TEXTURE2D(_Number_Atlas, sampler_Number_Atlas, atlasUV).r;
 
                 // SDF Font - thank you, Ben Cloward.
-                numberSampler -= _EdgeMax;
-                numberSampler /= _EdgeMin - _EdgeMax;
+                numberSampler -= _Edge_Max;
+                numberSampler /= _Edge_Min - _Edge_Max;
                 numberSampler = saturate(numberSampler);
 
                 // Making sure number doesn't spill outside of the circle
                 float maskedNumber = lerp(0.0, numberSampler, circleMask);
-                color.rgb = lerp(color.rgb, _NumbersColor.rgb, maskedNumber);
+                color.rgb = lerp(color.rgb, _Numbers_Color.rgb, maskedNumber);
 
                 return color;
             }
