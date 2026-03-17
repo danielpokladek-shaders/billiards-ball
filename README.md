@@ -1,40 +1,31 @@
-# Template Project (Unity)
+# Procedural Pool Ball
 
-Simple Unity project template for experimenting (URP-ready).
+Procedurally draw pool balls in a shader (stripe, number, etc.).
 
-Template comes with:
+![](Resources/banner.png)
 
-- Simple first person controller.
-- Scene with a room and colliders set up.
-- Prototyping materials/textures.
+## Overview
 
-## Requirements
+Under the hood, this shader uses Signed Distance Fields (SDF) to procedurally draw the stripe, the background circle, and the number itself. Shader properties can be tweaked to achieve the desired look, for example the stripe color can be changed or entirely turned off. The numbers are drawn as SDF font, which means a font texture is required (example is provided in repo).
 
-- Unity (see `ProjectSettings/ProjectVersion.txt` for the exact editor version used by this project)
+By default, the shader is configured to support a 4x4 grid of numbers (from 0 to 15). This can be adjusted if additional numbers are needed or if custom textures are used.
 
-## Getting started
+## Specs
 
-1. Open Unity Hub
-2. Add this folder as a project
-3. Open the project in the matching Unity version
-
-## Where to look
-
-- `Assets/Project/` — project-specific content (scenes, materials, shaders, scripts)
-- `Assets/Shared/` — shared/reusable assets
-- `Packages/manifest.json` — package dependencies (URP, Shader Graph, etc.)
-- `ProjectSettings/` — Unity project settings
-
-## Notes
-
-- If you’re on URP: check `ProjectSettings/GraphicsSettings.asset` and `ProjectSettings/QualitySettings.asset` to confirm the active render pipeline asset.
-- Unity’s `Library/` folder is generated locally and should not be edited manually.
+- Unity: **6000.3.10f1**
+- Render Pipeline: **Universal Render Pipeline (URP)**
 
 ## License
 
-See `LICENSE` for more information.
+Licensed under MIT unless otherwise specified - see [LICENSE](LICENSE) for more information.
 
 ## Acknowledgements
 
-Kenney Prototype Textures -
+Kenney - Prototype Textures -
 https://www.kenney.nl/assets/prototype-textures
+
+Mark Peters - Pool Table - 
+https://skfb.ly/pEBFO
+
+Ben Cloward - Sharp Text Shader - 
+https://youtu.be/Euvy_R03rlg?si=JTv5Y-RpnsN2R5GH
