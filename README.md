@@ -4,6 +4,8 @@ Procedurally draw pool balls in a shader (stripe, number, etc.).
 
 ![](Resources/banner.png)
 
+[pool-balls.webm](https://github.com/user-attachments/assets/79c313b7-79c3-47da-817e-e0264c07f82f)
+
 ## Overview
 
 Under the hood, this shader uses Signed Distance Fields (SDF) to procedurally draw the stripe, the background circle, and the number itself. Shader properties can be tweaked to achieve the desired look, for example the stripe color can be changed or entirely turned off. The numbers are drawn as SDF font, which means a font texture is required (example is provided in repo).
