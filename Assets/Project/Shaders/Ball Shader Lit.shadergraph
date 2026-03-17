@@ -1567,7 +1567,7 @@
     "m_Title": "Sampling Number Atlas",
     "m_Position": {
         "x": -5139.0,
-        "y": 1139.9998779296875
+        "y": 1140.0
     }
 }
 
@@ -4965,8 +4965,8 @@
     "m_ObjectId": "7ece330ed24f4decb8f51fb185e3fc24",
     "m_Title": "Number Circle",
     "m_Position": {
-        "x": -2553.999755859375,
-        "y": 575.0000610351563
+        "x": -2554.0,
+        "y": 575.0
     }
 }
 
@@ -5286,7 +5286,7 @@
     "m_Title": "Stripe",
     "m_Position": {
         "x": -2079.0,
-        "y": -803.9998779296875
+        "y": -804.0
     }
 }
 

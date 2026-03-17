@@ -45,7 +45,7 @@ Material:
     - _CircleRadius: 0.16
     - _EdgeMax: 0.6
     - _EdgeMin: 0.7
-    - _HasLine: 1
+    - _HasLine: 0
     - _LineThickness: 0.19
     - _Number: 6
     - _NumberAtlasSize: 4
