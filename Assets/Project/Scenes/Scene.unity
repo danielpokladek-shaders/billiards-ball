@@ -666,9 +666,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 48.596
       objectReference: {fileID: 0}
+    - target: {fileID: -2551260503379268556, guid: 6e0672e8dafce9218acd43b912c1b5ad, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -19.461
+      objectReference: {fileID: 0}
+    - target: {fileID: -2551260503379268556, guid: 6e0672e8dafce9218acd43b912c1b5ad, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 15.765
+      objectReference: {fileID: 0}
+    - target: {fileID: -2551260503379268556, guid: 6e0672e8dafce9218acd43b912c1b5ad, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.66
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6e0672e8dafce9218acd43b912c1b5ad, type: 3}
       propertyPath: m_Name
       value: Old Pool Table
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6e0672e8dafce9218acd43b912c1b5ad, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2686557944312810119, guid: 6e0672e8dafce9218acd43b912c1b5ad, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -874,7 +890,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1952268375}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 834540007093705336, guid: 33ca57b2cb169a7efb433b3dd71402ba, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -882,7 +898,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 8133117f0234054e3b5b63264faa2f55, type: 2}
     - target: {fileID: 2429160038554480468, guid: 33ca57b2cb169a7efb433b3dd71402ba, type: 3}
       propertyPath: _number
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429160038554480468, guid: 33ca57b2cb169a7efb433b3dd71402ba, type: 3}
+      propertyPath: _hasStripe
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2429160038554480468, guid: 33ca57b2cb169a7efb433b3dd71402ba, type: 3}
       propertyPath: _stripeColor.b
@@ -898,7 +918,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3010804986596040095, guid: 33ca57b2cb169a7efb433b3dd71402ba, type: 3}
       propertyPath: m_Name
-      value: Pool Ball (15)
+      value: Ball Unlit
+      objectReference: {fileID: 0}
+    - target: {fileID: 3010804986596040095, guid: 33ca57b2cb169a7efb433b3dd71402ba, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3255824042781925493, guid: 33ca57b2cb169a7efb433b3dd71402ba, type: 3}
       propertyPath: m_LocalPosition.x
@@ -945,11 +969,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33ca57b2cb169a7efb433b3dd71402ba, type: 3}
---- !u!4 &852636285 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3255824042781925493, guid: 33ca57b2cb169a7efb433b3dd71402ba, type: 3}
-  m_PrefabInstance: {fileID: 852636284}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1439970858
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1617,7 +1636,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8949912020327548339}
-  - {fileID: 852636285}
   - {fileID: 1791899627}
   - {fileID: 1439970859}
   - {fileID: 2127687080}
@@ -1809,8 +1827,9 @@ GameObject:
   - component: {fileID: 2037952053}
   - component: {fileID: 2037952052}
   - component: {fileID: 2037952051}
+  - component: {fileID: 2037952054}
   m_Layer: 0
-  m_Name: Ball Lit (1)
+  m_Name: Cue Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1882,12 +1901,28 @@ Transform:
   m_GameObject: {fileID: 2037952050}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.9028977, z: -0, w: -0.42985538}
-  m_LocalPosition: {x: 7.362, y: 0, z: 0.011000591}
+  m_LocalPosition: {x: -8.17, y: 0, z: 0.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -230.917, z: 0}
+--- !u!114 &2037952054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037952050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62b85832bd158ff5cbc822bcf41f5a8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PoolBall
+  _renderer: {fileID: 2037952051}
+  _hasStripe: 1
+  _stripeColor: {r: 0.9019608, g: 0.9019608, b: 0.8, a: 0}
+  _number: 0
 --- !u!1001 &2127687079
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2120,7 +2155,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 1494754750}
   - {fileID: 59486109}
-  - {fileID: 1495378179}
   - {fileID: 2037952053}
   - {fileID: 530991946}
+  - {fileID: 852636284}
+  - {fileID: 1495378179}
   - {fileID: 1952268375}

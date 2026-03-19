@@ -42,12 +42,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Edge_Max_Threshold: 0.6
-    - _Edge_Min_Threshold: 0.7
+    - _Edge_Max_Threshold: 0.38
+    - _Edge_Min_Threshold: 0.54
     - _Has_Line: 1
     - _Line_Thickness: 0.196
     - _Metallic: 0
-    - _Number: 10
+    - _Number: 6
     - _Number_Atlas_Size: 4
     - _QueueControl: 0
     - _QueueOffset: 0

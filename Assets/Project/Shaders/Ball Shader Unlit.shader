@@ -78,37 +78,38 @@ Shader "DP/BallShaderUnlit"
             {
                 // Precalculated shared properties
                 half gridInv = (float)1 / _Number_Atlas_Size;
-                int uvYOffset = _Number_Atlas_Size - 1;
+                int vOffset = _Number_Atlas_Size - 1;
                 half2 center = float2(0.5, 0.5);
 
                 half4 color = lerp(_Accent_Color, _Base_Color, _Has_Line);
                 
                 // Horizontal line across ball (stripe)
-                float distanceFromCenter = abs(IN.uv.y - center.x);
-                float lineMask = step(distanceFromCenter, _Line_Thickness);
+                float lineDistance = length(IN.uv.y - center.y) - _Line_Thickness;
+                float lineMask = smoothstep(0.01, 0.0, lineDistance);
                 color.rgb = lerp(color.rgb, _Accent_Color.rgb, lineMask);
                 
                 // Circle background behind number
                 float2 circleUVs = IN.uv;
+                circleUVs.x *= 2;
                 circleUVs = frac(circleUVs);
                 
-                float dist = distance(circleUVs, center);
-                float circleMask = step(dist, _Radius) * saturate(_Number);
+                float circleDistance = length(circleUVs - center) - _Radius;
+                float circleMask = smoothstep(0.01, 0.0, circleDistance) * saturate(_Number);
                 color.rgb = lerp(color.rgb, _Base_Color.rgb, circleMask);
-                
+
                 // Calculating UVs for the given number in atlas
-                float2 numberUV = (frac(IN.uv) - center) * uvYOffset + center;
-                float x = fmod(_Number, _Number_Atlas_Size);
-                float y = uvYOffset - floor(_Number * gridInv);
-                float2 atlasUV = (numberUV + float2(x, y)) * gridInv;
+                float2 numberUV = IN.uv;
+                numberUV.x *= 2;
+                numberUV = (frac(numberUV) - center) * vOffset + center;
+
+                float u = fmod(_Number, _Number_Atlas_Size);
+                float v = vOffset - floor(_Number * gridInv);
+                float2 atlasUV = (numberUV + float2(u, v)) * gridInv;
                 
                 // Sampling the number from atlas
                 float numberSampler = SAMPLE_TEXTURE2D(_Number_Atlas, sampler_Number_Atlas, atlasUV).r;
-
-                // SDF Font - thank you, Ben Cloward.
-                numberSampler -= _Edge_Max;
-                numberSampler /= _Edge_Min - _Edge_Max;
-                numberSampler = saturate(numberSampler);
+                numberSampler = 1.0 - numberSampler;
+                numberSampler = smoothstep(_Edge_Min, _Edge_Max, numberSampler);
 
                 // Making sure number doesn't spill outside of the circle
                 float maskedNumber = lerp(0.0, numberSampler, circleMask);
